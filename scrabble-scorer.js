@@ -157,7 +157,7 @@ function transform(oldPointStructure) {
 };
 
 transform(oldPointStructure);
-let newPointStructure = transform(oldPointStructure);
+let newPointStructure = transform(oldPointStructure).toLowerCase;
 // console.log(newPointStructure);
   // a: 1,
   // b: 3,
