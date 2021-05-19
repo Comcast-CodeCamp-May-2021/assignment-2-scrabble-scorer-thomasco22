@@ -149,7 +149,6 @@ function transform(oldPointStructure) {
   let newObject = {};
   for (let key in oldPointStructure) {
     let letters = oldPointStructure[key];
-    letters.split().toLowerCase().join();
     for (let i = 0; i < letters.length; i++) {
       newObject[letters[i]] = Number(key);
     }
