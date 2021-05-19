@@ -148,7 +148,7 @@ function scorerPrompt(numberAlg) {
 function transform(oldPointStructure) {
   let newObject = {};
   for (let key in oldPointStructure) {
-    let letters = oldPointStructure[key];
+    let letters = oldPointStructure[key].toLowerCase();
     for (let i = 0; i < letters.length; i++) {
       newObject[letters[i]] = Number(key);
     }
@@ -157,7 +157,7 @@ function transform(oldPointStructure) {
 };
 
 transform(oldPointStructure);
-let newPointStructure = transform(oldPointStructure).toLowerCase;
+let newPointStructure = transform(oldPointStructure);
 // console.log(newPointStructure);
   // a: 1,
   // b: 3,
