@@ -38,14 +38,14 @@ function oldScrabbleScorer(word) {
 function initialPrompt() {
   let firstQuestion = input.question(`Let's play some scrabble! 
 
-  Enter a word to score: `).toUpperCase();
+  Enter a word to score: `).toLowerCase();//the test will check the word and newPointStructure keys as matching in lower case.-Carl
   // console.log(scrabbleScore(firstQuestion));
   return firstQuestion;
 };
 
 
 let simpleScore = function(word) {
-  word = word.toUpperCase();
+  // word = word.toUpperCase();
   let letterPoints = 0;
 
   for (let i = 0; i < word.length; i++) {
@@ -56,24 +56,24 @@ let simpleScore = function(word) {
 
 
 let vowelBonusScore = function(word) {
-  word = word.toUpperCase();
+  // word = word.toUpperCase();
   let letterPoints = 0;
   // const vowels = ["A", "E", "I", "O", "U"];
 
-  for (let i = 0; i < word.length; i++) {
-    if (word[i] === "A") {
+  for (let i = 0; i < word.length; i++) {//looking for lower case letters
+    if (word[i] === 'a') {
       letterPoints += 3;
     } 
-    else if (word[i] === "E") {
+    else if (word[i] === 'e') {
       letterPoints += 3;
     }
-    else if (word[i] === "I") {
+    else if (word[i] === 'i') {
       letterPoints += 3;
     }
-    else if (word[i] === "O") {
+    else if (word[i] === 'o') {
       letterPoints += 3;
     }
-    else if (word[i] === "U") {
+    else if (word[i] === 'u') {
       letterPoints += 3;
     } else {
       letterPoints++;
@@ -82,13 +82,13 @@ let vowelBonusScore = function(word) {
   return letterPoints;
 };
 
-let scrabbleScore = function(word) {
-  word = word.toUpperCase();
+let scrabbleScore = function(word, pointStructure) {//scrabbleScore is supposed to take in a word and object as parameters(the user's word and newPointStructure)-Carl{see also ln:89 & 91}
+  // word = word.toUpperCase();
   let letterPoints = 0;
 	for (let i = 0; i < word.length; i++) {
-	  for (const letter in newPointStructure) {
+	  for (const letter in pointStructure) {
 		 if (letter.includes(word[i])) {
-			letterPoints += newPointStructure[letter]
+			letterPoints += pointStructure[letter]
 		 }
  
 	  }
@@ -150,6 +150,7 @@ function transform(oldPointStructure) {
   for (let key in oldPointStructure) {
     let letters = oldPointStructure[key];
     for (let i = 0; i < letters.length; i++) {
+      letters[i] = letters[i].toLowerCase();//test was failing because it was checking for keys to be lower case.-Carl
       newObject[letters[i]] = Number(key);
     }
   }
